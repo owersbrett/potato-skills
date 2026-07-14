@@ -1,0 +1,160 @@
+---
+import '../styles/global.css';
+import { REPO_URL } from '../lib/skills';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="/" class="wordmark">
+          <span class="wordmark-tuber">🥔</span> potato-skills
+        </a>
+        <nav aria-label="Site">
+          <a href="/">Skills</a>
+          <a href="/about">About</a>
+          <a href={REPO_URL} rel="noopener">GitHub</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-col">
+          <h2>Browse</h2>
+          <a href="/">All skills</a>
+          <a href="/about">About the project</a>
+        </div>
+        <div class="footer-col">
+          <h2>Project</h2>
+          <a href={REPO_URL} rel="noopener">GitHub</a>
+          <a href={`${REPO_URL}/blob/main/LICENSE`} rel="noopener">Apache 2.0</a>
+        </div>
+        <div class="footer-col">
+          <h2>Potatuhs</h2>
+          <a href="https://potatuhs.com" rel="noopener">potatuhs.com</a>
+        </div>
+      </div>
+      <div class="container footer-note">
+        Made with care by Potatuhs. Skills are open source on GitHub.
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-elevated);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.7rem;
+  }
+
+  .wordmark {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--text);
+    font-size: var(--step-0);
+    white-space: nowrap;
+  }
+
+  .wordmark:hover {
+    text-decoration: none;
+    color: var(--accent-strong);
+  }
+
+  .wordmark-tuber {
+    margin-inline-end: 0.15rem;
+  }
+
+  nav {
+    display: flex;
+    gap: clamp(0.75rem, 3vw, 1.75rem);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+  }
+
+  nav a {
+    color: var(--text-muted);
+  }
+
+  nav a:hover {
+    color: var(--accent-strong);
+  }
+
+  main {
+    padding-block: clamp(1.5rem, 5vw, 3.5rem);
+    min-height: 60vh;
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    margin-top: 3rem;
+    font-size: var(--step--1);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 2rem;
+    padding-block: 2.25rem 1rem;
+  }
+
+  .footer-col {
+    display: grid;
+    gap: 0.4rem;
+    align-content: start;
+    justify-items: start;
+  }
+
+  .footer-col h2 {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-faint);
+    margin: 0 0 0.25rem;
+  }
+
+  .footer-col a {
+    color: var(--text-muted);
+  }
+
+  .footer-note {
+    padding-block: 1rem 2rem;
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+  }
+</style>

@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getTags } from '../../lib/entries';
+
+const tags = await getTags();
+---
+
+<BaseLayout title="Tags" description="Browse journal entries by tag.">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">Browse</p>
+    <h1 class="title">Tags</h1>
+    <p class="lead">Every thread running through the journal.</p>
+
+    {
+      tags.length === 0 ? (
+        <p class="empty">No tags yet.</p>
+      ) : (
+        <ul class="tag-cloud">
+          {tags.map(({ tag, count }) => (
+            <li>
+              <a href={`/tags/${tag}`}>
+                <span class="tag-cloud__name">#{tag}</span>
+                <span class="tag-cloud__count">{count}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .title {
+    font-family: var(--font-serif);
+    font-size: var(--step-3);
+    letter-spacing: -0.025em;
+    margin-block: 0.4rem 0.6rem;
+  }
+  .lead {
+    color: var(--text-muted);
+    font-size: var(--step-1);
+    margin-bottom: 2rem;
+  }
+  .tag-cloud {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+  .tag-cloud a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    padding: 0.45rem 0.6rem 0.45rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--bg-elevated);
+    color: var(--text);
+    font-weight: 550;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .tag-cloud a:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .tag-cloud__count {
+    font-size: var(--step--1);
+    color: var(--text-faint);
+    background: var(--surface);
+    border-radius: 999px;
+    min-width: 1.4rem;
+    text-align: center;
+    padding: 0.05rem 0.4rem;
+  }
+  .empty {
+    color: var(--text-muted);
+  }
+</style>

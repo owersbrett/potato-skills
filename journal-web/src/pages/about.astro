@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { FLAVORS } from '../lib/entries';
+
+const flavors = Object.entries(FLAVORS) as [keyof typeof FLAVORS, { label: string; note: string }][];
+---
+
+<BaseLayout title="About" description="What a journal is and how entries get here.">
+  <div class="wrap wrap--narrow prose-page">
+    <p class="eyebrow">About</p>
+    <h1 class="title">What this is</h1>
+
+    <p class="lead">
+      This is a <strong>working journal</strong> — structured notes I write to my
+      future self at the end of a session. Instead of closing a session and losing
+      the thread, I leave a post: the through-line, the key takeaways
+      (<em>diamonds</em>), and where things landed. Scanning it later gets me back up
+      to speed in a minute or two.
+    </p>
+
+    <h2>How entries get here</h2>
+    <p>
+      Each entry is a single Markdown file with structured frontmatter — a small
+      <strong>contract</strong> that a companion skill writes automatically from a
+      working session. This site is just the renderer: it reads that directory,
+      validates every file against the contract, and lays it out. Drop a new
+      contract-valid file in and it shows up on the home page and at its own URL — no
+      code changes.
+    </p>
+
+    <h2>The four flavors</h2>
+    <p>
+      Every entry has a <em>flavor</em> — a register describing who it's for and how
+      produced it is. It's a quiet signal, shown as a small colored dot, never a
+      theme takeover.
+    </p>
+    <ul class="flavor-list">
+      {
+        flavors.map(([key, meta]) => (
+          <li>
+            <span class="dot" data-flavor={key} aria-hidden="true" />
+            <span class="flavor-name">{meta.label}</span>
+            <span class="flavor-note">{meta.note}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <h2>Diamonds</h2>
+    <p>
+      Every entry surfaces at least one <em>diamond</em> — a distilled takeaway meant
+      to be a recall hook. They're pulled to the top of each post as a TL;DR and are
+      the primary thing search looks at. If a future me only reads one thing, it
+      should be the diamonds.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .prose-page {
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .title {
+    font-family: var(--font-serif);
+    font-size: var(--step-3);
+    letter-spacing: -0.025em;
+    margin-block: 0.4rem 1.2rem;
+  }
+  .lead {
+    font-size: var(--step-1);
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+  .prose-page h2 {
+    font-size: var(--step-2);
+    margin-top: 2.4rem;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.02em;
+  }
+  .prose-page p {
+    margin-top: 1rem;
+    max-width: var(--measure);
+  }
+  .prose-page strong {
+    font-weight: 640;
+  }
+  .flavor-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.2rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .flavor-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .flavor-list .dot {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: var(--flavor);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--flavor) 16%, transparent);
+    flex: none;
+  }
+  .flavor-list .dot[data-flavor='potato'] { --flavor: var(--flavor-potato); }
+  .flavor-list .dot[data-flavor='tater'] { --flavor: var(--flavor-tater); }
+  .flavor-list .dot[data-flavor='pierogi'] { --flavor: var(--flavor-pierogi); }
+  .flavor-list .dot[data-flavor='fry'] { --flavor: var(--flavor-fry); }
+  .flavor-name {
+    font-weight: 620;
+    min-width: 5rem;
+  }
+  .flavor-note {
+    color: var(--text-faint);
+    font-size: var(--step--1);
+  }
+</style>

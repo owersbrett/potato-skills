@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InstallCommand from '../components/InstallCommand.astro';
+import { INSTALL_BASE, REPO_URL } from '../lib/skills';
+---
+
+<BaseLayout
+  title="About — potato-skills"
+  description="What potato-skills is: open-source agent skills that generate essential, interconnected infrastructure for the departments of your business."
+>
+  <article class="prose about">
+    <h1>About potato-skills</h1>
+
+    <p>
+      <strong>potato-skills</strong> is open-source software for generating
+      essential infrastructure that connects together — for every department of
+      your business. Each skill is a self-contained folder with a
+      <code>SKILL.md</code>: instructions any capable coding agent can pick up
+      and run. Install one, and your agent knows how to build and operate that
+      piece of your stack.
+    </p>
+
+    <p>
+      Skills here favor a clean contract between the skill and any external
+      system it integrates with, so the two can evolve independently. A skill
+      that writes journal entries defines the entry format; the web app that
+      renders them consumes the same contract. That's the pattern for
+      everything in this repo: <em>skills produce artifacts with contracts,
+      and infrastructure snaps together along those contracts.</em>
+    </p>
+
+    <h2>Install</h2>
+    <p>Every skill installs with one command:</p>
+    <InstallCommand command={`${INSTALL_BASE} --skill <name>`} />
+    <p>
+      Works with Claude Code, Cursor, Codex, Gemini CLI, GitHub Copilot, VS
+      Code, Zed — any agent that reads a <code>SKILL.md</code>.
+    </p>
+
+    <h2>The naming</h2>
+    <p>
+      The "potato" naming is just the house style — it's how this project
+      labels things, not a theme baked into what the skills produce. The
+      artifacts are clean and professional.
+    </p>
+
+    <h2>Open source</h2>
+    <p>
+      Everything is Apache 2.0 and lives at
+      <a href={REPO_URL} rel="noopener">github.com/owersbrett/potato-skills</a>.
+      Issues and contributions welcome. This site rebuilds from the repo
+      itself — a new skill folder with a valid <code>SKILL.md</code> appears
+      here automatically.
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .about {
+    margin-inline: auto;
+  }
+
+  .about h1 {
+    font-size: var(--step-3);
+  }
+</style>

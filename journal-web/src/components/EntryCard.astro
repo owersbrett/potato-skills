@@ -1,0 +1,162 @@
+---
+import FlavorBadge from './FlavorBadge.astro';
+import { formatDate, readingTime, type Entry } from '../lib/entries';
+
+interface Props {
+  entry: Entry;
+  featured?: boolean;
+}
+
+const { entry, featured = false } = Astro.props;
+const { data } = entry;
+const mins = readingTime(entry);
+---
+
+<article class:list={['card', { 'card--featured': featured }]}>
+  <a class="card__link" href={`/posts/${data.slug}`} aria-label={data.title}></a>
+  <div class="card__meta">
+    <FlavorBadge flavor={data.flavor} />
+    <time datetime={data.date}>{formatDate(data.date)}</time>
+    <span class="dot-sep" aria-hidden="true">·</span>
+    <span>{mins} min read</span>
+  </div>
+
+  <h2 class="card__title">{data.title}</h2>
+  <p class="card__dek">{data.through_line}</p>
+
+  {
+    featured && data.diamonds.length > 0 && (
+      <ul class="card__diamonds">
+        {data.diamonds.slice(0, 2).map((d) => (
+          <li>{d}</li>
+        ))}
+      </ul>
+    )
+  }
+
+  {
+    data.tags.length > 0 && (
+      <ul class="card__tags">
+        {data.tags.slice(0, 4).map((tag) => (
+          <li>
+            <a href={`/tags/${tag}`}>#{tag}</a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</article>
+
+<style>
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding: clamp(1.1rem, 3vw, 1.6rem);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.18s ease, box-shadow 0.18s ease,
+      transform 0.18s ease;
+  }
+  .card:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+  }
+  /* Whole-card click target without wrapping interactive children */
+  .card__link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+  }
+  .card__meta,
+  .card__title,
+  .card__dek,
+  .card__diamonds,
+  .card__tags {
+    position: relative;
+    z-index: 2;
+  }
+  .card__tags a {
+    pointer-events: auto;
+  }
+
+  .card__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex-wrap: wrap;
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+  .dot-sep {
+    color: var(--text-faint);
+  }
+
+  .card__title {
+    font-size: var(--step-1);
+    color: var(--text);
+  }
+  .card--featured .card__title {
+    font-size: var(--step-2);
+    font-family: var(--font-serif);
+    letter-spacing: -0.02em;
+  }
+  .card:hover .card__title {
+    color: var(--accent);
+  }
+
+  .card__dek {
+    color: var(--text-muted);
+    line-height: 1.55;
+    max-width: 60ch;
+  }
+
+  .card__diamonds {
+    list-style: none;
+    padding: 0.9rem 0 0.2rem;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+    border-top: 1px solid var(--border);
+    margin-top: 0.4rem;
+  }
+  .card__diamonds li {
+    position: relative;
+    padding-left: 1.3rem;
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+  .card__diamonds li::before {
+    content: '';
+    position: absolute;
+    left: 0.1rem;
+    top: 0.62em;
+    width: 0.4rem;
+    height: 0.4rem;
+    transform: translateY(-50%) rotate(45deg);
+    background: var(--accent);
+    border-radius: 1px;
+  }
+
+  .card__tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.7rem;
+    padding: 0;
+    margin-top: 0.35rem;
+    font-size: var(--step--1);
+  }
+  .card__tags a {
+    color: var(--text-faint);
+    text-decoration: none;
+  }
+  .card__tags a:hover {
+    color: var(--accent);
+  }
+</style>

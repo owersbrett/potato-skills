@@ -1,0 +1,61 @@
+---
+import { FLAVORS, type Flavor } from '../lib/entries';
+
+interface Props {
+  flavor: Flavor;
+  showNote?: boolean;
+}
+
+const { flavor, showNote = false } = Astro.props;
+const meta = FLAVORS[flavor];
+---
+
+<span class="badge" data-flavor={flavor} title={`flavor: ${flavor} (${meta.note})`}>
+  <span class="dot" aria-hidden="true"></span>
+  <span class="label">{meta.label}</span>
+  {showNote && <span class="note">{meta.note}</span>}
+</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--text-muted);
+    padding: 0.15rem 0.55rem 0.15rem 0.45rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--bg-elevated);
+    white-space: nowrap;
+  }
+  .dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--flavor);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--flavor) 18%, transparent);
+    flex: none;
+  }
+  .badge[data-flavor='potato'] {
+    --flavor: var(--flavor-potato);
+  }
+  .badge[data-flavor='tater'] {
+    --flavor: var(--flavor-tater);
+  }
+  .badge[data-flavor='pierogi'] {
+    --flavor: var(--flavor-pierogi);
+  }
+  .badge[data-flavor='fry'] {
+    --flavor: var(--flavor-fry);
+  }
+  .label {
+    color: var(--text);
+  }
+  .note {
+    color: var(--text-faint);
+    font-weight: 500;
+  }
+</style>

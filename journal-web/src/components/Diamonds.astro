@@ -1,0 +1,82 @@
+---
+// The load-bearing callout: the entry's key takeaways as a TL;DR.
+interface Props {
+  diamonds: string[];
+}
+const { diamonds } = Astro.props;
+---
+
+<aside class="diamonds" aria-label="Key takeaways">
+  <div class="diamonds__head">
+    <svg class="diamonds__icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M12 2.5 21 9l-9 12.5L3 9l9-6.5Z"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linejoin="round"
+      />
+      <path d="M3 9h18M8.5 4.5 7 9l5 12.5M15.5 4.5 17 9l-5 12.5" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round" opacity="0.55" />
+    </svg>
+    <span>Diamonds</span>
+    <span class="diamonds__sub">the takeaways</span>
+  </div>
+  <ul class="diamonds__list">
+    {diamonds.map((d) => <li>{d}</li>)}
+  </ul>
+</aside>
+
+<style>
+  .diamonds {
+    background: var(--accent-soft);
+    border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+    border-radius: var(--radius);
+    padding: clamp(1.1rem, 3vw, 1.6rem);
+    margin-block: 2rem;
+  }
+  .diamonds__head {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-weight: 650;
+    letter-spacing: 0.01em;
+    color: var(--accent);
+    margin-bottom: 0.85rem;
+  }
+  .diamonds__icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    flex: none;
+  }
+  .diamonds__sub {
+    font-size: var(--step--1);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+    margin-left: auto;
+  }
+  .diamonds__list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.7rem;
+  }
+  .diamonds__list li {
+    position: relative;
+    padding-left: 1.5rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .diamonds__list li::before {
+    content: '';
+    position: absolute;
+    left: 0.15rem;
+    top: 0.5em;
+    width: 0.5rem;
+    height: 0.5rem;
+    transform: translateY(-50%) rotate(45deg);
+    background: var(--accent);
+    border-radius: 1px;
+  }
+</style>

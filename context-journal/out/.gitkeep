@@ -1,0 +1,3 @@
+# Default output directory for journal entries.
+# The skill writes contract-valid Markdown here unless given an --output override.
+# The web app reads from here by default (JOURNAL_CONTENT_DIR).

@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EntryCard from '../components/EntryCard.astro';
+import { getEntries } from '../lib/entries';
+
+const entries = await getEntries();
+const [featured, ...rest] = entries;
+---
+
+<BaseLayout>
+  <div class="wrap">
+    <section class="hero">
+      <p class="eyebrow">The journal</p>
+      <h1 class="hero__title">Notes to my future self.</h1>
+      <p class="hero__lead">
+        A running record of working sessions — the through-line, the diamonds, and
+        where each one landed. Built so scanning my own history gets me back up to
+        speed fast.
+      </p>
+    </section>
+
+    {
+      entries.length === 0 ? (
+        <div class="empty">
+          <h2>No entries yet.</h2>
+          <p>
+            Drop a contract-valid <code>.md</code> file into your content directory
+            (<code>JOURNAL_CONTENT_DIR</code>) and it will appear here.
+          </p>
+        </div>
+      ) : (
+        <div class="feed">
+          {featured && (
+            <>
+              <p class="feed__label eyebrow">Latest</p>
+              <EntryCard entry={featured} featured />
+            </>
+          )}
+
+          {rest.length > 0 && (
+            <>
+              <p class="feed__label eyebrow">Earlier entries</p>
+              <div class="grid">
+                {rest.map((entry) => (
+                  <EntryCard entry={entry} />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      )
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .hero {
+    max-width: 42rem;
+    padding-block: clamp(1rem, 4vw, 2.5rem) clamp(2rem, 6vw, 3.5rem);
+  }
+  .hero__title {
+    font-family: var(--font-serif);
+    font-size: var(--step-4);
+    letter-spacing: -0.025em;
+    margin-block: 0.6rem 1rem;
+  }
+  .hero__lead {
+    font-size: var(--step-1);
+    color: var(--text-muted);
+    line-height: 1.5;
+    max-width: 38ch;
+  }
+
+  .feed {
+    display: grid;
+    gap: 1rem;
+  }
+  .feed__label {
+    margin-top: 1.6rem;
+    margin-bottom: 0.2rem;
+  }
+  .feed__label:first-child {
+    margin-top: 0;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+    gap: 1rem;
+  }
+
+  .empty {
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius);
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--text-muted);
+  }
+  .empty h2 {
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+  .empty code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--surface);
+    padding: 0.1rem 0.35rem;
+    border-radius: 5px;
+  }
+</style>
