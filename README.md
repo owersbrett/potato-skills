@@ -41,14 +41,12 @@ Some primary skills are families of smaller ones:
 
 ## The sites
 
-Two web apps live alongside the skills. They render skill output; they are not
-skills themselves.
-
-- **[skills-web](./skills-web)** — the directory site
-  (**skills.potatuhs.com**). At build time it scans this repo for `SKILL.md`
-  files and renders a searchable index with install one-liners and per-skill
-  detail pages. Add a skill folder anywhere in the repo and it appears on the
-  site at the next build — the repo layout *is* the site content.
+- **[skills.potatocore.com](https://skills.potatocore.com)** — the directory
+  site. At build time it scans a checkout of this repo for `SKILL.md` files
+  and renders an index with install one-liners and per-skill detail pages.
+  Add a skill folder to this repo and it appears on the site at the next
+  build — the repo layout *is* the site content. (The site app itself is
+  deployed separately and is not part of this repo.)
 - **[journal-web](./journal-web)** — a clean Astro blog that renders
   context-journal entries.
 
@@ -56,14 +54,14 @@ skills themselves.
 
 Everything lives in this one repo on purpose:
 
-- **skills-web indexes by scanning.** The site discovers skills from the repo
-  tree at build time. One repo means the directory site, the install commands,
-  and the skills can never drift apart.
+- **The directory site indexes by scanning.** skills.potatocore.com discovers
+  skills from this repo tree at build time. One repo means the directory site,
+  the install commands, and the skills can never drift apart.
 - **Skills share contracts.** business-os modules share `PROTOCOL.md`;
   context-journal flavors share `CONTRACT.md`. Splitting into per-skill repos
   would turn those contracts into cross-repo dependencies.
 - **One install convention.** Every skill installs the same way, from the same
-  place, shown on its skills-web page.
+  place, shown on its skills.potatocore.com page.
 
 ## Examples
 

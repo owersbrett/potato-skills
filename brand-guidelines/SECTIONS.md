@@ -6,9 +6,9 @@ propose) during the interview, and what its **page renders** in the generated
 site.
 
 Sections come in two tiers. Unmarked sections are **Essentials** — the
-nine-section core every brand book gets by default (00 Cover, 01 Overview,
+ten-section core every brand book gets by default (00 Cover, 01 Overview,
 02 Logo, 03 Color, 04 Typography, 05 Iconography, 06 Photography, 08 UI
-Components, 11 Layout). Sections marked **(Complete)** are offered once at
+Components, 11 Layout, 13 AI Policy). Sections marked **(Complete)** are offered once at
 intake for brands that want the full system. In either tier, a section is
 either present or explicitly cut with a stated reason — silent omission is
 a bug.
@@ -278,7 +278,37 @@ approved sample copy, do/don't.
 
 ---
 
-## 13 · Sub-brands & Ecosystem (Complete)
+## 13 · AI Policy
+
+**Covers:** The brand's declared stance on artificial intelligence — in its
+products, its content, and its production chain. Brands are increasingly
+AI-first, AI-native, AI-assisted, or deliberately AI-free; audiences read the
+absence of a stance as evasion. This section makes the position explicit so
+the brand is perceived as transparent, whichever position it takes.
+
+**Ask:**
+- The stance, in one named term the brand will stand behind (AI-first /
+  AI-native / AI-assisted / AI-free — or the brand's own word for it), plus
+  one sentence of why.
+- Disclosure rule: when AI contributes to published content (copy, imagery,
+  code, support responses), is that labeled? How?
+- Production boundaries: where AI is welcome, where it is forbidden, and
+  where a human must review before anything ships. Name the surfaces
+  (e.g. "generated imagery never in photography-section contexts",
+  "support drafts always human-approved").
+- Contractor & vendor rule: may contractors and agencies use AI on brand
+  work? Under what disclosure and quality obligations?
+- Data stance: what brand or customer material may be put into third-party
+  AI tools, and what never leaves the building.
+
+**Renders:** Stance statement (large, unambiguous), a permitted/forbidden
+surface table, the disclosure rule as a callout, contractor obligations,
+data-boundary list. No hedging language — this page is the one readers
+screenshot.
+
+---
+
+## 14 · Sub-brands & Ecosystem (Complete)
 
 **Covers:** For multi-brand or multi-division organizations: the brand
 architecture (hub-and-spoke? endorsed brands?), how sub-brands are visually
@@ -296,7 +326,7 @@ brand deviation notes.
 
 ---
 
-## 14 · Asset Naming & Governance (Complete)
+## 15 · Asset Naming & Governance (Complete)
 
 **Covers:** The operational tail that keeps the system alive: asset file
 naming convention, delivered formats, where the tokens live in code, and how
