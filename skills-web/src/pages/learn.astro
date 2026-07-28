@@ -1,0 +1,313 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Learn — build your own web app with Claude Code"
+  description="A guided chat that walks you through using Claude Code to build a web app that teaches web apps and business building — powered by the skills in this repo."
+>
+  <section class="learn-hero">
+    <h1>Build the thing that teaches</h1>
+    <p class="lede">
+      This guide walks you through using <a href="https://claude.com/claude-code" rel="noopener">Claude Code</a>
+      to build your own web app — and the app you build teaches others how to build
+      web apps and businesses. The skills in this repo are the course material.
+      No experience required.
+    </p>
+  </section>
+
+  <section class="chat-panel" aria-label="Guided chat">
+    <div class="chat-log" id="chat-log" aria-live="polite">
+      <div class="msg msg-assistant">
+        <div class="msg-body">
+          Hey — I'm the potato-skills guide. I'll walk you through building your own
+          web app with Claude Code, one step at a time. First: have you ever used a
+          terminal or written code before, or is this all brand new?
+        </div>
+      </div>
+    </div>
+    <form class="chat-form" id="chat-form">
+      <textarea
+        id="chat-input"
+        rows="2"
+        placeholder="Type your answer…"
+        maxlength="4000"
+        required
+        aria-label="Your message"></textarea>
+      <button type="submit" id="chat-send">Send</button>
+    </form>
+    <p class="chat-note">
+      Conversations aren't saved between visits. The guide can't see your screen —
+      it teaches, you type.
+    </p>
+  </section>
+</BaseLayout>
+
+<script>
+  const log = document.getElementById('chat-log')!;
+  const form = document.getElementById('chat-form') as HTMLFormElement;
+  const input = document.getElementById('chat-input') as HTMLTextAreaElement;
+  const sendBtn = document.getElementById('chat-send') as HTMLButtonElement;
+
+  type Msg = { role: 'user' | 'assistant'; content: string };
+  const history: Msg[] = [
+    {
+      role: 'assistant',
+      content:
+        "Hey — I'm the potato-skills guide. I'll walk you through building your own web app with Claude Code, one step at a time. First: have you ever used a terminal or written code before, or is this all brand new?",
+    },
+  ];
+
+  function addBubble(role: 'user' | 'assistant'): HTMLElement {
+    const wrap = document.createElement('div');
+    wrap.className = `msg msg-${role}`;
+    const body = document.createElement('div');
+    body.className = 'msg-body';
+    wrap.appendChild(body);
+    log.appendChild(wrap);
+    log.scrollTop = log.scrollHeight;
+    return body;
+  }
+
+  // Minimal, safe rendering: text with ``` blocks and `inline code`.
+  function render(el: HTMLElement, text: string) {
+    el.textContent = '';
+    const parts = text.split(/```(?:\w*\n)?/);
+    parts.forEach((part, i) => {
+      if (i % 2 === 1) {
+        const pre = document.createElement('pre');
+        pre.textContent = part.replace(/\n$/, '');
+        el.appendChild(pre);
+      } else {
+        part.split(/(`[^`]+`)/).forEach((seg) => {
+          if (seg.startsWith('`') && seg.endsWith('`') && seg.length > 2) {
+            const code = document.createElement('code');
+            code.textContent = seg.slice(1, -1);
+            el.appendChild(code);
+          } else if (seg) {
+            el.appendChild(document.createTextNode(seg));
+          }
+        });
+      }
+    });
+  }
+
+  async function send(text: string) {
+    history.push({ role: 'user', content: text });
+    render(addBubble('user'), text);
+
+    sendBtn.disabled = true;
+    input.disabled = true;
+    const bubble = addBubble('assistant');
+    bubble.classList.add('thinking');
+    bubble.textContent = '…';
+
+    let assembled = '';
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: history.slice(-40) }),
+      });
+      if (!res.ok || !res.body) {
+        const err = await res.json().catch(() => null);
+        throw new Error(err?.error ?? `Request failed (${res.status})`);
+      }
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n\n');
+        buffer = lines.pop() ?? '';
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          const payload = line.slice(6);
+          if (payload === '[DONE]') continue;
+          const data = JSON.parse(payload);
+          if (data.error) throw new Error(data.error);
+          if (data.text) {
+            assembled += data.text;
+            bubble.classList.remove('thinking');
+            render(bubble, assembled);
+            log.scrollTop = log.scrollHeight;
+          }
+        }
+      }
+      history.push({ role: 'assistant', content: assembled });
+    } catch (err) {
+      bubble.classList.remove('thinking');
+      bubble.classList.add('error');
+      bubble.textContent = err instanceof Error ? err.message : 'Something went wrong.';
+      history.pop(); // let them retry the same user turn
+    } finally {
+      sendBtn.disabled = false;
+      input.disabled = false;
+      input.focus();
+    }
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text || sendBtn.disabled) return;
+    input.value = '';
+    send(text);
+  });
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      form.requestSubmit();
+    }
+  });
+</script>
+
+<style>
+  .learn-hero h1 {
+    font-family: var(--font-mono);
+    font-size: var(--step-3);
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5rem;
+  }
+
+  .lede {
+    color: var(--text-muted);
+    max-width: 56ch;
+    margin: 0 0 2rem;
+  }
+
+  .chat-panel {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .chat-log {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 1.25rem;
+    height: min(55vh, 34rem);
+    overflow-y: auto;
+  }
+
+  .msg {
+    display: flex;
+  }
+
+  .msg-user {
+    justify-content: flex-end;
+  }
+
+  .msg-body {
+    max-width: 85%;
+    padding: 0.6rem 0.9rem;
+    border-radius: var(--radius-sm);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .msg-assistant .msg-body {
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .msg-user .msg-body {
+    background: var(--accent-soft);
+    border: 1px solid var(--border-strong);
+  }
+
+  .msg-body.thinking {
+    color: var(--text-faint);
+  }
+
+  .msg-body.error {
+    border-color: var(--orange-dark);
+    color: var(--orange-deep);
+  }
+
+  .msg-body :global(pre) {
+    background: var(--terminal-bg);
+    color: var(--terminal-text);
+    border-radius: var(--radius-sm);
+    padding: 0.6rem 0.8rem;
+    overflow-x: auto;
+    font-size: var(--step--1);
+    margin: 0.5rem 0;
+  }
+
+  .msg-body :global(code) {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.05em 0.3em;
+    font-size: 0.88em;
+  }
+
+  .msg-body :global(pre code) {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .chat-form {
+    display: flex;
+    gap: 0.6rem;
+    padding: 0.9rem 1.25rem;
+    border-top: 1px solid var(--border);
+    background: var(--bg-elevated);
+  }
+
+  .chat-form textarea {
+    flex: 1;
+    resize: none;
+    font: inherit;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    padding: 0.55rem 0.75rem;
+  }
+
+  .chat-form textarea:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+
+  .chat-form button {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 700;
+    color: var(--accent-contrast);
+    background: var(--accent);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 0 1.2rem;
+    cursor: pointer;
+  }
+
+  .chat-form button:hover:not(:disabled) {
+    background: var(--accent-strong);
+  }
+
+  .chat-form button:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  .chat-note {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-faint);
+    padding: 0 1.25rem 1rem;
+    margin: 0.5rem 0 0;
+  }
+</style>

@@ -20,7 +20,7 @@ company you haven't hired yet. That feeling is the onboarding funnel.
 |---|-------|----------|-------|
 | 1 | [`vision`](./vision) | Vision & Positioning | — |
 | 2 | [`customer-blueprint`](./customer-blueprint) | Customer Blueprint | vision |
-| 3 | [`potatuhs-design`](../potatuhs-design) | Brand Guidelines | vision, customer |
+| 3 | [`brand-guidelines`](../brand-guidelines) | Brand Guidelines | vision, customer |
 | 4 | [`messaging`](./messaging) | Messaging & Content | vision, customer, brand |
 | 5 | [`business-model`](./business-model) | Business Model & Metrics | vision, customer |
 | 6 | [`go-to-market`](./go-to-market) | Go-to-Market Playbook | messaging, model, customer |

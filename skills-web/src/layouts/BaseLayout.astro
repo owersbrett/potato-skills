@@ -25,11 +25,10 @@ const { title, description } = Astro.props;
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <a href="/" class="wordmark">
-          <span class="wordmark-tuber">🥔</span> potato-skills
-        </a>
+        <a href="/" class="wordmark">potato-skills</a>
         <nav aria-label="Site">
           <a href="/">Skills</a>
+          <a href="/learn">Learn</a>
           <a href="/about">About</a>
           <a href={REPO_URL} rel="noopener">GitHub</a>
         </nav>
@@ -92,10 +91,6 @@ const { title, description } = Astro.props;
   .wordmark:hover {
     text-decoration: none;
     color: var(--accent-strong);
-  }
-
-  .wordmark-tuber {
-    margin-inline-end: 0.15rem;
   }
 
   nav {

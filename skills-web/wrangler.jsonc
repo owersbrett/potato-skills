@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "potato-skills-web",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-07-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "./dist"
+  },
+  "routes": [
+    { "pattern": "skills.potatocore.com", "custom_domain": true }
+  ]
+}

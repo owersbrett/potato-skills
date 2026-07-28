@@ -9,10 +9,16 @@ const repoRoot = resolve(process.cwd(), '..');
 
 const skills = defineCollection({
   loader: glob({
+    // Only tested skills are listed. The rest of the repo's skills stay
+    // commented out until they pass a real end-to-end run — uncomment a
+    // line to re-list its family.
     pattern: [
-      '**/SKILL.md',
+      'brand-guidelines/SKILL.md',
+      // 'business-os/**/SKILL.md',
+      // 'context-journal/**/SKILL.md',
       '!**/node_modules/**',
       '!**/dist/**',
+      '!examples/**',
       '!journal-web/**',
       '!skills-web/**',
     ],

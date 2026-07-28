@@ -34,7 +34,7 @@ this module doesn't exist yet.
 
 Compose **in order**; each section feeds the next. Propose → confirm → lock,
 one section per exchange (the interview mechanics in
-`../../potatuhs-design/SKILL.md` §Procedure apply verbatim). At intake, ask
+`../../brand-guidelines/SKILL.md` §Procedure apply verbatim). At intake, ask
 one question that shapes the whole middle of the document: **does this
 business sell 1:1?** If not, Part II is cut explicitly — a stated decision in
 the document, not a silent hole.
@@ -132,7 +132,7 @@ Per `../PROTOCOL.md` (order 6, port 4006, upstream: `messaging`,
 - **MCP** — the four standard tools (`go-to-market_get_document`,
   `go-to-market_get_contract`, `go-to-market_query`, `go-to-market_record`).
 - **Site** — single-page-scroll document site, one section per rubric entry,
-  per the architecture contract in `../../potatuhs-design/SITE.md`. Render
+  per the architecture contract in `../../brand-guidelines/SITE.md`. Render
   with the workspace's brand tokens if the brand stone exists; otherwise the
   neutral default theme, noted in `status`.
 - **`CLAUDE.md`** — states that this is the most *operational* stone: the
