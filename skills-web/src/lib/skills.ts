@@ -19,7 +19,7 @@ export const FAMILIES: Record<string, { topic: string; note: string }> = {
     topic: 'Agent workflows',
     note: "Don't clear your session — journal it.",
   },
-  'potatuhs-design': {
+  'brand-guidelines': {
     topic: 'Design & branding',
     note: 'Compose a complete brand-guidelines website, together.',
   },

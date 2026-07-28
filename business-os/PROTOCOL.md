@@ -30,7 +30,7 @@ Read this before composing any stone and before assembling the master site.
 |---|---|---|---|---|
 | 1 | `vision` | Vision & Positioning | purpose | — |
 | 2 | `customer-blueprint` | Customer Blueprint | customer | vision |
-| 3 | `brand` *(skill: [`potatuhs-design`](../potatuhs-design))* | Brand Guidelines | identity | vision, customer-blueprint |
+| 3 | `brand` *(skill: [`brand-guidelines`](../brand-guidelines))* | Brand Guidelines | identity | vision, customer-blueprint |
 | 4 | `messaging` | Messaging & Content | identity | vision, customer-blueprint, brand |
 | 5 | `business-model` | Business Model & Metrics | business | vision, customer-blueprint |
 | 6 | `go-to-market` | Go-to-Market Playbook | business | messaging, business-model, customer-blueprint |

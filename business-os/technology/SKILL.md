@@ -33,7 +33,7 @@ stones and an engineer is about to touch code without one.
 ## The rubric — sections of TECHNOLOGY.md
 
 Compose **in order**. Propose → confirm → lock, one section per exchange
-(the interview mechanics in `../../potatuhs-design/SKILL.md` §Procedure apply
+(the interview mechanics in `../../brand-guidelines/SKILL.md` §Procedure apply
 verbatim). Upstream reads: `vision` (§07 product philosophy), `business-model`
 (growth and volume targets), `operations` (decision log conventions). Extract
 from them; flag loudly when one is missing.
@@ -108,7 +108,7 @@ operations):
 - **MCP** — the four standard tools (`technology_get_document`,
   `technology_get_contract`, `technology_query`, `technology_record`).
 - **Site** — single-page-scroll document site per the architecture contract
-  in `../../potatuhs-design/SITE.md`. If a brand stone exists in the
+  in `../../brand-guidelines/SITE.md`. If a brand stone exists in the
   workspace, render with its tokens; otherwise the neutral default theme,
   noted in `status`.
 - **`CLAUDE.md`** — states that this document governs how agents write code
@@ -126,7 +126,7 @@ operations):
   evaluation needs a rule the vision doesn't have, that's a vision change —
   it happens in the vision stone, on purpose.
 - **No UI values here.** Design tokens, components, and visual rules belong
-  to the brand stone (`potatuhs-design`). This document cites them; the
+  to the brand stone (`brand-guidelines`). This document cites them; the
   moment it redefines a color or a component, it's wrong.
 - **Security and deployment must be actionable by a stranger.** "Be careful
   with secrets" fails the test; a named store, a named gate, and a named

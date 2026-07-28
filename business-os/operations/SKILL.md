@@ -34,7 +34,7 @@ or what to hire for next.
 
 Compose **in order**; each section feeds the next. Propose → confirm → lock,
 one section per exchange (the interview mechanics in
-`../../potatuhs-design/SKILL.md` §Procedure apply verbatim).
+`../../brand-guidelines/SKILL.md` §Procedure apply verbatim).
 
 **00 · Cover** — business name, one-line description of how this company
 works, version, date.
@@ -102,7 +102,7 @@ Per `../PROTOCOL.md` (order 7, port 4007, upstream: `vision`,
 - **MCP** — the four standard tools (`operations_get_document`,
   `operations_get_contract`, `operations_query`, `operations_record`).
 - **Site** — single-page-scroll document site, one section per rubric entry,
-  per the architecture contract in `../../potatuhs-design/SITE.md` (sidebar
+  per the architecture contract in `../../brand-guidelines/SITE.md` (sidebar
   nav, scroll-sync, print-to-PDF). If a brand stone exists in the workspace,
   render with its tokens; otherwise ship the neutral default theme and note
   it in `status`.

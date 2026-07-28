@@ -37,7 +37,7 @@ protocol.
 
 Compose **in order**; each section feeds the next. Propose → confirm → lock,
 one section per exchange (the interview mechanics in
-`../../potatuhs-design/SKILL.md` §Procedure apply verbatim).
+`../../brand-guidelines/SKILL.md` §Procedure apply verbatim).
 
 **00 · Cover** — business name, one-line description of the model ("we sell X
 to Y on Z terms"), version, date.
@@ -104,7 +104,7 @@ Per `../PROTOCOL.md` (order 5, port 4005, upstream: `vision`,
   `business-model_get_contract`, `business-model_query`,
   `business-model_record`).
 - **Site** — single-page-scroll document site, one section per rubric entry,
-  per the architecture contract in `../../potatuhs-design/SITE.md` (sidebar
+  per the architecture contract in `../../brand-guidelines/SITE.md` (sidebar
   nav, scroll-sync, print-to-PDF). If a brand stone exists in the workspace,
   render with its tokens; otherwise ship the neutral default theme and note
   it in `status`.

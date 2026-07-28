@@ -40,7 +40,7 @@ in section 06 are provisional") and mark the affected sections.
 
 Compose **in order**; the pitch feeds the claims, the claims feed the copy.
 Propose → confirm → lock, one section per exchange (the interview mechanics
-in `../../potatuhs-design/SKILL.md` §Procedure apply verbatim).
+in `../../brand-guidelines/SKILL.md` §Procedure apply verbatim).
 
 **00 · Cover** — business name, one-line self-description (cited from
 vision's cover, not re-invented), version, date.
@@ -109,7 +109,7 @@ Per `../PROTOCOL.md` (order 4, port 4004, upstream `vision`,
 - **MCP** — the four standard tools (`messaging_get_document`,
   `messaging_get_contract`, `messaging_query`, `messaging_record`).
 - **Site** — single-page-scroll document site, one section per rubric
-  entry, per the architecture contract in `../../potatuhs-design/SITE.md`
+  entry, per the architecture contract in `../../brand-guidelines/SITE.md`
   (sidebar nav, scroll-sync, print-to-PDF). Render with the workspace's
   brand tokens if the brand stone exists; otherwise neutral default theme,
   noted in `status`.

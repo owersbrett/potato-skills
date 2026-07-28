@@ -1,40 +1,77 @@
 # potato-skills
 
-Open-source [Claude](https://claude.com/claude-code) skills.
+Open-source [Claude](https://claude.com/claude-code) skills for running a business —
+one repo, a small set of primary skills, and the sites that render them.
 
-Each skill is a self-contained folder with a `SKILL.md`. Skills here favor a clean
+Each skill is a self-contained folder with a `SKILL.md`. Skills favor a clean
 contract between the skill and any external system it integrates with, so the two
 can evolve independently.
 
 > The "potato" naming is just the house style — it's how this project labels things,
 > not a theme baked into what the skills produce.
 
-## Skills
+## The primary skills
 
-### [context-journal](./context-journal)
+The skills form a path — each one composes a canonical piece of a business, in the
+order you'd actually build it:
 
-Don't clear your session — journal it. Turns the context of a working session into a
-structured blog entry for your future self (a recall hook), or for an audience.
-Four flavors (`potato` / `tater` / `pierogi` / `fry`) over one shared entry
-contract. Ships with [`journal-web`](./journal-web), a clean Astro blog that renders
-the entries.
+| # | Skill | Folder | What it composes |
+|---|-------|--------|------------------|
+| 1 | **Brand guidelines** | [`brand-guidelines`](./brand-guidelines) | A complete, token-first brand-guidelines website, built through a guided interview. |
+| 2 | **Ideal customer profile** | [`business-os/customer-blueprint`](./business-os/customer-blueprint) | Who the business serves — the customer blueprint document. |
+| 3 | **Go-to-market strategy** | [`business-os/go-to-market`](./business-os/go-to-market) | How the business reaches those customers. |
+| 4 | **Business operating system** | [`business-os`](./business-os) | The full document set — vision, messaging, business model, operations, technology — assembled by the master [`intranet`](./business-os/intranet) skill into a business intranet. |
+| 5 | **Blog** | [`context-journal`](./context-journal) | Don't clear your session — journal it. Working sessions become structured blog entries, rendered by [`journal-web`](./journal-web). |
 
-### [business-os](./business-os)
+## Skill families
 
-A business is a small set of canonical documents. Eight skills each compose one —
-vision, customer blueprint, brand, messaging, business model, go-to-market,
-operations, technology — as standalone modules (document site + machine contract +
-core tables + MCP server), and a master `intranet` skill assembles whatever exists
-into a business intranet with an honest ghost town for everything that doesn't.
-The shared contract lives in [`PROTOCOL.md`](./business-os/PROTOCOL.md).
+Some primary skills are families of smaller ones:
 
-### [potatuhs-design](./potatuhs-design)
+- **[business-os](./business-os)** — a business is a small set of canonical
+  documents. Eight module skills each compose one (vision, customer blueprint,
+  messaging, business model, go-to-market, operations, technology), and the master
+  `intranet` skill assembles whatever exists into an intranet — with an honest
+  ghost town for everything that doesn't. The shared contract is
+  [`PROTOCOL.md`](./business-os/PROTOCOL.md).
+- **[context-journal](./context-journal)** — four flavors (`potato` / `tater` /
+  `pierogi` / `fry`) over one shared entry contract
+  ([`CONTRACT.md`](./context-journal/CONTRACT.md)).
+- **[brand-guidelines](./brand-guidelines)** — a single skill, extracted from a real
+  production brand system.
 
-Compose a complete brand-guidelines website, together. A guided interview through
-every component of a brand system — logo system, color, typography, iconography,
-components, motion, layout, voice — that generates a token-first, print-ready,
-single-page-scroll guidelines site backed by a `DESIGN.md` spec. Extracted from a
-real production brand system.
+## The sites
+
+Two web apps live alongside the skills. They render skill output; they are not
+skills themselves.
+
+- **[skills-web](./skills-web)** — the directory site
+  (**skills.potatuhs.com**). At build time it scans this repo for `SKILL.md`
+  files and renders a searchable index with install one-liners and per-skill
+  detail pages. Add a skill folder anywhere in the repo and it appears on the
+  site at the next build — the repo layout *is* the site content.
+- **[journal-web](./journal-web)** — a clean Astro blog that renders
+  context-journal entries.
+
+## Repo layout
+
+Everything lives in this one repo on purpose:
+
+- **skills-web indexes by scanning.** The site discovers skills from the repo
+  tree at build time. One repo means the directory site, the install commands,
+  and the skills can never drift apart.
+- **Skills share contracts.** business-os modules share `PROTOCOL.md`;
+  context-journal flavors share `CONTRACT.md`. Splitting into per-skill repos
+  would turn those contracts into cross-repo dependencies.
+- **One install convention.** Every skill installs the same way, from the same
+  place, shown on its skills-web page.
+
+## Examples
+
+Worked outputs of the skills live in a top-level `examples/` directory — one
+complete run per skill (a finished brand site, a filled-in customer blueprint,
+a real journal). The directory is gitignored on purpose: each example is its
+own git project, born from actually running the skill, and the ones that come
+out well get pulled out and published as downloads rather than committed here.
 
 ## License
 

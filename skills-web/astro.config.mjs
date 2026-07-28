@@ -2,6 +2,6 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://skills.potatuhs.com',
+  site: 'https://skills.potatocore.com',
   trailingSlash: 'never',
 });

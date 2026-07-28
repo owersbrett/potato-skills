@@ -1,0 +1,7 @@
+# Skill output examples — each is its own git project, not part of this repo.
+# Good ones get pulled out and published as downloads.
+examples/
+
+node_modules/
+dist/
+.astro/
