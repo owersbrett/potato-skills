@@ -50,7 +50,11 @@ personality, and the principles everything downstream must obey.
   motion", "never more than two colors per surface").
 
 **Renders:** Statement header, adjective cards (word + meaning), audience
-list, principle grid. Voice belongs to section 12 — keep only a teaser here.
+list — and the construction principles as **live demonstrations**: each
+principle is paired with a small working demo of itself (a custom
+implementation if that's what it takes), never a bare claim in a card. A
+principle the page cannot show is a principle the book hasn't earned (Brett,
+2026-08-03). Voice belongs to section 12 — keep only a teaser here.
 
 ---
 

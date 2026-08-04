@@ -5,6 +5,18 @@ The process contract (`SECTIONS.md`, `SITE.md`) guarantees the document is
 HTML or CSS, and hold every rendered section against it. A section that
 passes the process but reads as generic AI design is a failed section.
 
+## Show, don't declare
+
+The most common generic-AI failure in a brand book: declaring qualities in
+adjective cards ("alive", "playful", "bouncy") while the page sits perfectly
+still. Every quality the book claims must be observable in the book — the
+motion section moves, the principles run as live demos, the components have
+real hover and press states, the logo's elements can be decomposed and
+animated. If a claim can't be demonstrated, either build the demonstration
+(a custom implementation is allowed and encouraged) or don't make the claim.
+Section presentation must vary with content — sixteen sections rendered as
+the same two-column grid read as lifeless no matter how good the values are.
+
 ## The core principle
 
 **Top-tier design is the disciplined removal of competing emphasis.** One
