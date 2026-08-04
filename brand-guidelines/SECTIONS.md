@@ -5,13 +5,14 @@ order. Each entry declares: what the section **covers**, what to **ask** (or
 propose) during the interview, and what its **page renders** in the generated
 site.
 
-Sections come in two tiers. Unmarked sections are **Essentials** — the
-ten-section core every brand book gets by default (00 Cover, 01 Overview,
-02 Logo, 03 Color, 04 Typography, 05 Iconography, 06 Photography, 08 UI
-Components, 11 Layout, 13 AI Policy). Sections marked **(Complete)** are offered once at
-intake for brands that want the full system. In either tier, a section is
-either present or explicitly cut with a stated reason — silent omission is
-a bug.
+**Every section is mandatory, every run — 00 through 15, no tiers, no cuts**
+(Brett, 2026-08-03; the old Essentials/Complete tier system consistently
+dropped 09, 10, 12, 14, and 15, and is retired). The numbering is canonical
+and complete: 09 and 10 come after 08; 12 comes after 11. A brand that lacks
+the material for a section still gets the section — scaffolded rules, loud
+`PLACEHOLDER` blocks, or the brand's explicit "none" stance rendered as the
+content — but the section EXISTS in the nav, the site, and the spec.
+Omission, silent or reasoned, is a bug.
 
 The order is deliberate — early sections feed later ones. Color must lock
 before components; typography before layout; everything before motion.
@@ -166,7 +167,7 @@ labeled placeholders if not), guideline cards.
 
 ---
 
-## 07 · Mascots & Characters (Complete)
+## 07 · Mascots & Characters
 
 **Covers:** If the brand has characters: the roster, the art direction that
 keeps them consistent across artists, and usage rules (where characters may
@@ -179,7 +180,8 @@ appear, how they interact with the logo and product UI).
 - Usage boundaries: marketing yes / legal pages no, etc.
 
 **Renders:** Character grid (art + name + role), art-direction principles,
-do/don't. Skip entirely — and say so — for brands without characters.
+do/don't. A brand without characters still renders the section: state the
+no-characters position and the rule for if one ever appears. Never skip.
 
 ---
 
@@ -205,7 +207,7 @@ from the same tokens, no images.
 
 ---
 
-## 09 · Shadows & Borders (Complete)
+## 09 · Shadows & Borders
 
 **Covers:** The elevation language: shadow scale (and its *style* — soft
 ambient vs. hard offset are different brands), border weights, and the
@@ -221,7 +223,7 @@ corners, border spec.
 
 ---
 
-## 10 · Motion (Complete)
+## 10 · Motion
 
 **Covers:** How the brand moves: easing curves, duration tokens, named
 animation patterns (fade-up, scale-in, marquee…), stagger rules, and the
@@ -259,7 +261,7 @@ divider/frame examples.
 
 ---
 
-## 12 · Voice & Tone (Complete)
+## 12 · Voice & Tone
 
 **Covers:** How the brand writes and speaks: the external voice, tone
 principles, vocabulary (words we use / words we never use), and sample copy
@@ -308,7 +310,7 @@ screenshot.
 
 ---
 
-## 14 · Sub-brands & Ecosystem (Complete)
+## 14 · Sub-brands & Ecosystem
 
 **Covers:** For multi-brand or multi-division organizations: the brand
 architecture (hub-and-spoke? endorsed brands?), how sub-brands are visually
@@ -326,7 +328,7 @@ brand deviation notes.
 
 ---
 
-## 15 · Asset Naming & Governance (Complete)
+## 15 · Asset Naming & Governance
 
 **Covers:** The operational tail that keeps the system alive: asset file
 naming convention, delivered formats, where the tokens live in code, and how
