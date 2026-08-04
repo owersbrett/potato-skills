@@ -63,10 +63,11 @@ Then settle, in the same short exchange (never a form):
   a website to extract from) or are we defining from scratch? If assets exist,
   gather them first — extract real values rather than asking the user to
   recite them.
-- **Scope.** Default to **Essentials** — the nine-section core marked in
-  `SECTIONS.md`. Offer **Complete** (every section) once, in one sentence.
-  Either tier may still cut a section with a stated reason, but Essentials
-  is the floor — a brand book without typography isn't one.
+- **Scope.** Every section in `SECTIONS.md`, always — 00 through 15, no
+  tiers, no cuts (Brett, 2026-08-03; the retired Essentials/Complete tier
+  system consistently dropped 09, 10, 12, 14, and 15). A section with
+  nothing extracted still renders: scaffolded rules, loud placeholders, or
+  the brand's explicit "none" stance — but the section exists, in order.
 - **Where it lives.** Target directory for the generated site + spec.
 
 Manual intake ends with the **first render**: the scaffold (`index.html` +
@@ -300,9 +301,10 @@ workspace) skips all of this — the skill is complete without it.
 
 ## Hard rules
 
-- **Essentials by default, Complete on request.** Every section of the tier
-  chosen at intake is either present in the output or explicitly cut with a
-  stated reason. Silent omission is a bug.
+- **Every section, every time.** All sections 00–15 are present in every
+  output — no tiers, no cuts, no "cut with reason." A brand that lacks the
+  material still gets the section, holding placeholders or its explicit
+  stance. 09 and 10 follow 08; 12 follows 11. Omission is a bug, full stop.
 - **Token-first.** If a value appears in the spec, it exists in `tokens.css`,
   and the site reads the token. No hard-coded brand values in components.
 - **`DESIGN.md` is the SSOT.** The site is a renderer. When they disagree, the
