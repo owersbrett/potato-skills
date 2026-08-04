@@ -305,6 +305,15 @@ workspace) skips all of this — the skill is complete without it.
   output — no tiers, no cuts, no "cut with reason." A brand that lacks the
   material still gets the section, holding placeholders or its explicit
   stance. 09 and 10 follow 08; 12 follows 11. Omission is a bug, full stop.
+- **Show, don't declare.** A brand book must render *how to do good*, not
+  announce "do good" (Brett, 2026-08-03). Every claimed quality — alive,
+  bouncy, chunky, exact — must be observable in the artifact itself: live
+  demos, working motion, real components. Adjective cards over a motionless
+  page are the failure mode. Sections must not all present identically; a
+  brand with motion gets a book that moves, and every section carries at
+  least one demonstrative element. Truisms ("we don't ship broken games")
+  don't make the principles list — principles earn their slot by being
+  demonstrable and non-obvious.
 - **Token-first.** If a value appears in the spec, it exists in `tokens.css`,
   and the site reads the token. No hard-coded brand values in components.
 - **`DESIGN.md` is the SSOT.** The site is a renderer. When they disagree, the
